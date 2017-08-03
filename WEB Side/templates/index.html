@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+
+		<title>WeatherMan</title>
+
+		<!-- Loading third party fonts -->
+		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<link href="{{ url_for('static', filename='fonts/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+
+		<!-- Loading main css file -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+		<!--[if lt IE 9]>
+		<script src="{{ url_for('static', filename='js/ie-support/html5.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/ie-support/respond.js') }}"></script>
+		<![endif]-->
+
+	</head>
+
+	<body style="font-family:Microsoft JhengHei">
+
+		<div class="site-content">
+			<div class="site-header">
+				<div class="container">
+					<a href="index.html" class="branding">
+						<img src="{{ url_for('static', filename='images/icon.png') }}" alt="" class="logo" height=60px>
+						<div class="logo-type">
+							<h1 class="site-title">WeatherMan</h1>
+							<small class="site-description">您的天氣小幫手</small>
+						</div>
+					</a>
+				</div>
+			</div> <!-- .site-header -->
+
+			<div class="hero" data-bg-image="{{ url_for('static', filename='images/nightSky.jpg') }}" method="post" action="/submit">
+				<div class="container">
+					<form  action="/submit" method="post" class="find-location">
+					<div class="styled-select green rounded">
+					  <select  name="selectedCountry">
+						<option>請選擇您的地區...</option>
+						<option value="Taipei_City">基隆市</option>
+						<option value="Taipei_City">臺北市</option>
+						<option value="New_Taipei_City">新北市</option>
+						<option value="Taoyuan_City">桃園市</option>
+						<option value="Hsinchu_City">新竹市</option>
+						<option value="Miaoli_County">苗栗縣</option>
+						  <option value="Taichung_City">台中市</option>
+						  <option value="Taichung_City">彰化縣</option>
+						  <option value="Nantou_County">南投縣</option>
+						  <option value="Yunlin_County">雲林縣</option>
+						  <option value="Chiayi_City">嘉義市</option>
+						  <option value="Chiayi_County">嘉義縣</option>
+						  <option value="Tainan_City">臺南市</option>
+						  <option value="Kaohsiung_City">高雄市</option>
+						  <option value="Pingtung_County">屏東縣</option>
+						  <option value="Hualien_County">花蓮縣</option>
+						  <option value="Taitung_County">臺東縣</option>
+						  <option value="Yilan_County">宜蘭縣</option>
+						  <option value="Kinmen_County">金門縣</option>
+					  </select>
+						<input type="submit" value="送出">
+					</div>
+
+					</form>
+
+				</div>
+			</div>
+			<div class="forecast-table">
+				<div class="container">
+					<div class="forecast-container">
+						<div class="today forecast">
+							<div class="forecast-header">
+								<div class="day" id="time">18：00</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="location" id="location">現在</div>
+								<div class="degree">
+									<div class="num" id="nowTemp">27<sup>o</sup>C</div>
+									<div class="forecast-icon">
+										<img src="{{ url_for('static', filename='images/icons/icon-1.svg') }}" alt="" width=90>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day" id="section1"></div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="{{ url_for('static', filename='images/icons/icon-1.svg') }}" alt="" width=48>
+								</div>
+								<div class="degree" id="section1Temp">27<sup>o</sup>C</div>
+
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day" id="section2"></div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="{{ url_for('static', filename='images/icons/icon-2.svg') }}" alt="" width=48>
+								</div>
+								<div class="degree" id="section2Temp">23<sup>o</sup>C</div>
+
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day" id="section3"></div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="{{ url_for('static', filename='images/icons/icon-3.svg') }}" alt="" width=48>
+								</div>
+								<div class="degree" id="section3Temp">23<sup>o</sup>C</div>
+
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">感測器溫度</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="{{ url_for('static', filename='images/icons/icon-12.svg') }}" alt="" width=48>
+								</div>
+								<div class="degree" id="sensorTemp">23<sup>o</sup>C</div>
+
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day" >感測器濕度</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="{{ url_for('static', filename='images/icons/icon-13.svg') }}" alt="" width=48>
+								</div>
+								<div class="degree" id="sensorHumi">23<sup>o</sup>C</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<footer class="site-footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8">
+							<form action="#" class="subscribe-form">
+								<input type="text" placeholder="請輸入您的意見...">
+								<input type="submit" value="送出">
+							</form>
+						</div>
+						<div class="col-md-3 col-md-offset-1">
+							<div class="social-links">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-google-plus"></i></a>
+								<a href="#"><i class="fa fa-pinterest"></i></a>
+							</div>
+						</div>
+					</div>
+
+					<p class="colophon">Copyright 2017 WeatherMan. Designed by Themezy. All rights reserved</p>
+				</div>
+			</footer> <!-- .site-footer -->
+		</div>
+
+		<script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+		<script>
+
+
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+var temptureature = "Sensor Down!!";
+var humi = "Sensor Down!!";
+    var countryData = JSON.parse({{ country|tojson }});
+
+
+
+setInterval(function(){
+    $("#sensorTemp").html(temptureature);
+    $("#sensorHumi").html(humi);
+},500);
+    var obj = JSON.parse({{country|tojson}})
+	if(obj){
+		var temp = obj["sections"]["section1"].split(" ")
+		$("#section1").text(temp[0]+" "+temp[1]);
+		temp = obj["sections"]["section2"].split(" ")
+		$("#section2").text(temp[0]+" "+temp[1]);
+		temp = obj["sections"]["section3"].split(" ")
+		$("#section3").text(temp[0]+" "+temp[1]);
+		$("#section1Temp").text(obj["section1"].Temp);
+		$("#section2Temp").text(obj["section2"].Temp);
+		$("#section3Temp").text(obj["section3"].Temp);
+		$("#location").text(obj["country"])
+  		$("#nowTemp").text(obj["section1"].Temp);
+
+	}
+
+function startTime() {
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    var today = new Date();
+    h = today.getHours();
+    m = today.getMinutes();
+    s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('time').innerHTML =
+    h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+}
+setTimeout(function(){
+    setInterval(function () {
+        var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+        $.ajax({
+            type: "POST",
+            url: SCRIPT_ROOT+"/arduionDatas",
+            //data: { param: "fuck"}
+        }).done(function( o ) {
+            console.log("request complete")
+
+            if(getCookie("Temp")!=0&&getCookie("Humi")!=0){
+                temptureature = getCookie("Temp");
+                humi = getCookie("Humi");
+
+            }
+
+        });
+
+    },1000);
+},1000)
+
+startTime();
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+function setIcon(element,Rain){
+    $(element).attr("src","icon-"+parseInt(Rain%10+1)+".svg");
+}
+</script>
+
+	</body>
+
+</html>
